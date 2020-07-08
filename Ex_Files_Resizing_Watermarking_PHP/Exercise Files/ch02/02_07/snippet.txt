@@ -1,0 +1,16 @@
+if ($result['output']) {
+    echo 'The following images were generated:<br>';
+    echo '<ul>';
+    foreach ($result['output'] as $output) {
+        echo "<li>$output</li>";
+    }
+    echo '</ul>';
+}
+if ($result['invalid']) {
+    echo 'The following files were invalid:<br>';
+    echo '<ul>';
+    foreach ($result['invalid'] as $invalid) {
+        echo "<li>$invalid</li>";
+    }
+    echo '</ul>';
+}
