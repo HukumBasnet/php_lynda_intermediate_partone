@@ -1,0 +1,20 @@
+// if both messages have been sent, redirect to relevant page
+if ($sent == 2) {
+    header('Location: thanks.php');
+    exit;
+}
+
+// handle failures
+$num_failed = count($failures);
+if ($num_failed == 2) {
+    $f = 'both';
+} elseif ($num_failed == 1 && in_array($email, $failures)) {
+    $f = 'email';
+} else {
+    $f = 'reg';
+}
+
+// IMPORTANT: log an error before redirecting
+
+header("Location: error.php?f=$f");
+exit;

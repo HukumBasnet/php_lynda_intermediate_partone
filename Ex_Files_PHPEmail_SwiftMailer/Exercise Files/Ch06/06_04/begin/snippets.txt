@@ -1,0 +1,31 @@
+// check file upload
+if (empty($_FILES) || $_FILES['photo']['error'] == 2) {
+    $errors['photo'] = 'File exceeds maximum size (1 MB)';
+} elseif ($_FILES['photo']['error'] == 4) {
+    $errors['photo'] = 'You must select a photo';
+} elseif ($_FILES['photo']['error'] > 0) {
+    $errors['photo'] = 'There was an error uploading the file';
+}
+
+// check MIME type
+$permitted = ['image/jpeg', 'image/png', 'image/gif'];
+if (!empty($_FILES['photo']['type']) && !in_array($_FILES['photo']['type'], $permitted)) {
+    if (isset($errors['photo'])) {
+        $errors['photo'] .= ' &mdash; file format must be JPG, PNG, or GIF';
+    } else {
+        $errors['photo'] = 'Photo must be JPG, PNG, or GIF';
+    }
+}
+
+// make sure file was genuinely uploaded
+if ($_FILES['photo']['error'] === 0 && !is_uploaded_file($_FILES['photo']['tmp_name'])) {
+    $errors['photo'] = "Sorry, can't handle that file";
+}
+
+####
+
+// HTML for the image
+$html .= '<tr><td style="font-family: \'Lucida Grande\', \'Lucida Sans Unicode\',
+    Verdana, sans-serif; color: #1B1B1B; font-size: 14px; padding: 1em">
+    <p>#photo#</p></td></tr>';
+$html .= '<tr><td align="center"><img src="'. $photo . '" alt="' . $name . '"></td></tr>';

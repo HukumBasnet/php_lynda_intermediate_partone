@@ -1,0 +1,12 @@
+$text = <<<EOT
+HTML Email with Swift Mailer
+
+To send HTML email with Swift Mailer, simply pass the
+HTML markup to the setBody() method of the message object,
+and set the second argument to 'text/html'.
+
+As the Swift Mailer documentation explains
+(http://swiftmailer.org/docs/messages.html#setting-the-body-content),
+you should always add a plain text version of the content
+using the addPart() method.
+EOT;

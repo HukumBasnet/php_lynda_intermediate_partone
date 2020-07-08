@@ -1,0 +1,8 @@
+$sql = 'SELECT address, name FROM users';
+ $result = $conn->query($sql);
+ $i = 0;
+ while ($row = $result->fetch_assoc()) {
+     $recipients[$i]['email'] = $row['address'];
+     $recipients[$i]['name'] = $row['name'];
+     $i++;
+ }
